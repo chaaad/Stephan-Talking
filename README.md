@@ -1,4 +1,4 @@
-###Stephen Talking - jQuery plugin
+###Stephen Talking
 
 is a lightweight javascript speech generator - there also is a [jQuery version](https://github.com/chaaad/Stephan-Talking-JQuery-Plugin)
 
