@@ -60,14 +60,14 @@ $StepanTalking= {
 
 	//constants
 	PI_2: 2 *Math.PI,
-	space_ltrs: " ..\n",
+	space_ltrs: " .,\n",
 	quarter_spc_ltr: "_",
 	eighth_spc_ltr: "-",
 
 
 	audio_el: new Audio(),
 
-	speaking_flag:false,
+	speaking_flag: false,
 
 
 
