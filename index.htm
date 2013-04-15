@@ -8,21 +8,15 @@ BODY {font:10px verdana; }
 INPUT.key {background:#ff9; }
 SPAN.phoneme {font-weight:bold; color:red; }
 PRE {font-size:12px; }
-
-DIV#examples>P {margin:0; };
-
 </style>
 
 
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script src="js/st.min.js"></script>
+<!--script src="js/st.js"></script--><!--source code-->
 
-<script src="js/jq_stephanTalking.min.js"></script>
-<!--script src="js/jq_stephanTalking.js"></script--><!--source code-->
-
-<!--plugins for a plugin - translators for Stephan Talking-->
-<script src="js/jq_stephanTalking_t-numbers.js"></script>
-<script src="js/jq_stephanTalking_t-fancyNumbers.js"></script>
-<script src="js/jq_stephanTalking_t-nato.js"></script>
+<script src="js/st_t-numbers.js"></script>
+<script src="js/st_t-fancyNumbers.js"></script>
+<script src="js/st_t-nato.js"></script>
 
 </head>
 <body>
@@ -30,9 +24,9 @@ DIV#examples>P {margin:0; };
 
 
 
-<h1>Stephen Talking - jQuery plugin</h1>
+<h1>Stephen Talking</h1>
 
-<p>is a lightweight javascript speech generator -  there also is a <a href="../st/">non jQuery version</a>
+<p>is a lightweight javascript speech generator  -  there also is a <a href="../jQ_stephanTalking/">jQuery version</a>
 	<a style="float: right; " href="/">alkemis</a>
 </p>
 <p>- this is based on <a href=" http://heckmeck.de/demoscene/tiny-speech-synth-js/">Tiny Speech Synth in JavaScript</a></p>
@@ -109,20 +103,20 @@ to 'fix' raw text: 1-lowercase everything, 2-replace q and x, 3-replace all c wi
 <br>
 <br>
 more examples of stephantalk:
-<div id="examples" style="color:orange; ">
+<div style="color:orange; ">
 A bE sE dE E ef jE Ach I jA kA el em en O pE kwU ar es tE yU vE dublyU eks wI zE
--
+<br>-<br>
 adams boston chikagO denvr EsE frank jorg henrE Ida jon_ king linkin mir-E nU_york O-shen pEtr kwEEn rogr shU-gr tomas Union viktor wil-yam eks-rA yung_ zerO
--
+<br>-<br>
 jan_U_er_E feb_bU_er_E march April mAA_ jUn jUlI orgust septembr oct_tO_br nOvembr dEsembr
--
+<br>-<br>
 mon_dA tUs_dA wens_dA thurs_dA frI_dA satur_dA sun_dA
--
+<br>-<br>
 - span-ish - serO UnO dOs tres kwatrO sinkO sE-As sE_et_A O_chO nE_ev_es dE_es
+<br>
 - ja-pan_Es - zerO EchE nE_ san_ yOn_ gO_ lUkU nana hachE kwU_ jU_
+<br>
 - can-ton_Es - ling_ yut yE sam sE_ Ung lUk chut baht gawl sup
--
-jA_kwir_E plug_in
 </div>
 
 
@@ -143,27 +137,27 @@ jA_kwir_E plug_in
 
 <hr>
 
-v1
+v3
 <br>
 for developers:
 <br>
-download jQ plugin (under 5k): <a href="js/jq_stephanTalking.min.js">jq_stephanTalking.min.js</a> source: <a href="js/jq_stephanTalking.js">jq_stephanTalking.js</a> readme: <a href="txt/j_st_readme.txt">j_st_readme.txt</a>
+download lib, compressed (under 5k): <a href="js/st.min.js">st.min.js</a> source: <a href="js/st.js">st.js</a> readme: <a href="txt/st_readme.txt">st_readme.txt</a>
 <br>
 <br>
-extend Stephan Talking jQ with translators:
+extend Stephan Talking with translators:
 <br>
-readme: <a href="txt/j_st_translator_readme.txt">j_st_translator_readme.txt</a>
+readme: <a href="txt/st_translator_readme.txt">st_translator_readme.txt</a>
 <br>
 source:
-<a href="js/jq_stephanTalking_t-numbers.js">jq_stephanTalking_t-numbers.js</a>
-<a href="js/jq_stephanTalking_t-fancyNumbers.js">jq_stephanTalking_t-fancyNumbers.js</a>
-<a href="js/jq_stephanTalking_t-nato.js">jq_stephanTalking_t-nato.js</a>
+<a href="js/st_t-numbers.js">st_t-numbers.js</a>
+<a href="js/st_t-fancyNumbers.js">st_t-fancyNumbers.js</a>
+<a href="js/st_t-nato.js">st_t-nato.js</a>
 <br>
 <br>
-all files: <a href="/zip/jq_st.zip">jq_st.zip</a>
+all files: <a href="/zip/st.zip">st.zip</a>
 <br>
 <br>
-<a href="https://github.com/chaaad/Stephan-Talking-JQuery-Plugin">code also on github</a>
+<a href="https://github.com/chaaad/Stephan-Talking">code also on github</a>
 <hr>
 <pre>
 more demos:
@@ -178,11 +172,16 @@ multiple calls triggered by the audio 'ended' event
 multiple calls triggered by a 15 sec timer saying the time
 
 <a href="#" onclick="demo_keyboard(this); return false; ">keyboard</a>
-turn keys on bottom row of keyboard (z,x,c,v,b,n,m) into triggers (toggle on/off)
+turns keys on bottom row of keyboard (z,x,c,v,b,n,m) into triggers (toggle on/off)
 
 <a href="#" onclick="demo_nato(this); return false; ">nato</a>
 takes text from 1st textbox and says it in the nato phonetic alphabet (alpha, bravo, charlie, etc)
 </pre>
+
+
+
+
+
 
 
 
@@ -216,11 +215,8 @@ function process_text(convert_flag) {
 	var text= document.getElementById("text_ta").value;
 
 	if (document.getElementById("t_numbers_input").checked) {
-
-		//if ($.stephanTalking.translate && $.stephanTalking.translate.fancyNumbers) text= $.stephanTalking.translate.fancyNumbers(text);
-
-		if ($.stephanTalking.translate && $.stephanTalking.translate.numbers) text= $.stephanTalking.translate.numbers(text);
-		else console.error("'numbers' translator (jq_stephanTalking_t-numbers.js) not loaded");
+		if ($TT && $TT.numbers) text= $TT.numbers.process(text);
+		else console.error("'numbers' translator (st_t-numbers.js) not loaded");
 	}
 
 	if (!convert_flag) {
@@ -286,7 +282,6 @@ function process_objs(convert_flag) {
 	else speak(text_objs_array);
 }
 
-
 function speak(input) {
 	var
 		pitch= 50  +validate("pitch_input")  *4,  // 50 | 75  | 450
@@ -294,8 +289,7 @@ function speak(input) {
 		vol=  0.3 +validate("vol_input")   *.007 //0.3 | 0.7 | 1.0
 	;
 
-	$.stephanTalking.speak({i:input, p:pitch, c:cadence, v:vol});
-
+	$ST.speak({i:input, p:pitch, c:cadence, v:vol});
 
 
 
@@ -324,32 +318,67 @@ function range_num(el, min, max) {
 
 
 
-//examples_speak
-(function() {
-	var div_JQ= $("DIV#examples").on("click", "A", function(event) {$("#text_ta").val($(this).parent().text().slice(0,-4)); process_text(); });
-	var str= div_JQ.text();
-	div_JQ.empty();
-	jQuery.each(str.split("\n"), function(i, str) {div_JQ.append($("<p/>").html(str).append(str.length>1?" <a href=#talk>talk</a>":"")); });
-}) ();
+
+
+
+//quirksmode xhr
+function sendRequest(url,callback,postData) {
+	var req = createXMLHTTPObject();
+	if (!req) return;
+	var method = (postData) ? "POST" : "GET";
+	req.open(method,url,true);
+	req.setRequestHeader('User-Agent','XMLHTTP/1.0');
+	if (postData)
+		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	req.onreadystatechange = function () {
+		if (req.readyState != 4) return;
+		if (req.status != 200 && req.status != 304) {
+//		  alert('HTTP error ' + req.status);
+//			return;
+		}
+		callback(req);
+	}
+	if (req.readyState == 4) return;
+	req.send(postData);
+}
+
+var XMLHttpFactories = [
+	function () {return new XMLHttpRequest()},
+	function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+	function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+	function () {return new ActiveXObject("Microsoft.XMLHTTP")}
+];
+
+function createXMLHTTPObject() {
+	var xmlhttp = false;
+	for (var i=0;i<XMLHttpFactories.length;i++) {
+		try {
+			xmlhttp = XMLHttpFactories[i]();
+		}
+		catch (e) {
+			continue;
+		}
+		break;
+	}
+	return xmlhttp;
+}
+
+
 
 
 //TEMP for DEV - get latest phonemes data from stub file - database TBD
-jQuery.ajax({
-	url: "../js/phonemes.js", //not phonemes.json because wserver not set up for ".json" extension
-	dataType: "text", //all jQuery JSON calls expects official JSON notation - eh
-	success: function(data) {
-		var pho_obj= eval("(" +data +")");
-
-		$.stephanTalking.setting({phonemes:pho_obj});
-		console.log("phonemes overridden");
-
-		render_phonemes(jQuery.stephanTalking.settings.phonemes);
-	},
-	error: function() {
-		console.log("load 'phonemes.js' error can be ignored");
-		render_phonemes(jQuery.stephanTalking.settings.phonemes);
+sendRequest(
+	"../js/phonemes.js",
+	function(xhr_obj) {
+		try {
+			$ST.phonemes= eval("(" +xhr_obj.responseText +")");
+			console.log("phonemes overridden");
+		} catch(e) {
+			console.log("load 'phonemes.js' error can be ignored");
+		}
+		render_phonemes($ST.phonemes);
 	}
-});
+);
 
 function render_phonemes(pho_obj) {
 	var str= "";
@@ -362,10 +391,7 @@ function render_phonemes(pho_obj) {
 
 
 
-
 //demos
-$.stephanTalking.speak(" "); //init to access $.stephanTalking.audio_el (it lazy inits)
-
 function log_demo(el) {
 	console.log("DEMO ", el.text);
 }
@@ -382,7 +408,7 @@ function demo_event(el) {
 		else end();
 	};
 
-	$.stephanTalking.audio_el.addEventListener("ended", handler, false);
+	$ST.audio_el.addEventListener("ended", handler, false);
 
 	step(); //start it
 
@@ -390,11 +416,11 @@ function demo_event(el) {
 		console.log("step", i, demo_arr[i]);
 
 		speak(demo_arr[i]);
-		//$.stephanTalking.speak(demo_arr[i]);
+		//$ST.speak(demo_arr[i]);
 	}
 
 	function end() {
-		$.stephanTalking.audio_el.removeEventListener("ended", handler, false);
+		$ST.audio_el.removeEventListener("ended", handler, false);
 	}
 }
 
@@ -411,7 +437,7 @@ function demo_timer(el) {
 		console.log("step", i, demo_arr[i]);
 
 		speak(demo_arr[i]);
-		//$.stephanTalking.speak(demo_arr[i]);
+		//$ST.speak(demo_arr[i]);
 
 		i++;
 		if (!demo_arr[i]) end();
@@ -426,10 +452,9 @@ var timer_3;
 function demo_clock(el) {
 	log_demo(el);
 
-	if (!$.stephanTalking.translate || !$.stephanTalking.translate.fancyNumbers) return console.error("fancyNumbers translator not loaded")
+	if (!$TT || !$TT.fancyNumbers) return console.error("fancyNumbers translator not loaded")
 
-	if (timer_3) clearInterval(timer_3);
-
+	if (timer_3) clearInterval(timer_3); //no multiple concurrent demo_3
 	var ct= 0;
 
 	step(); //1st one
@@ -457,12 +482,12 @@ function demo_clock(el) {
 		s= d.getSeconds();
 		if (s) str+= "and" +s +"second" +(s==1 ? "" : "s");
 
-		str= $.stephanTalking.translate.fancyNumbers(str);
+		str= $TT.fancyNumbers.process(str);
 		console.log("step", ct, str);
 		ct++;
 
 		speak(str);
-		//$.stephanTalking.speak({
+		//$ST.speak({
 		//	i:str,
 		//	p:100,
 		//	c:.4
@@ -471,7 +496,7 @@ function demo_clock(el) {
 
 	function end() {
 		speak("end_demO_klok");
-		//$.stephanTalking.speak("end_demO_klok");
+		//$ST.speak("end_demO_klok");
 
 		clearInterval(timer_3);
 	}
@@ -509,7 +534,7 @@ function demo_keyboard(el) {
 		var keycode= event.charCode || event.keyCode;
 		if (pitch=pitch_map[keycode]) {
 			sound_obj.p= pitch;
-			$.stephanTalking.speak(sound_obj);
+			$ST.speak(sound_obj);
 		}
 	}
 
@@ -518,7 +543,7 @@ function demo_keyboard(el) {
 function demo_nato(el) {
 	log_demo(el);
 
-	speak($.stephanTalking.translate.nato(document.getElementById("text_ta").value));
+	speak($TT.nato.process(document.getElementById("text_ta").value));
 }
 
 </script>
