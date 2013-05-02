@@ -15,7 +15,7 @@ $TextTranslator.nato= {
 		f:"fokstrot",
 		g:"golf",
 		h:"hOtel",
-		i:"ind_E_a",
+		i:"in_dE_ya",
 		j:"jUl_E_et",
 		k:"kE_lO",
 		l:"lE_ma",
